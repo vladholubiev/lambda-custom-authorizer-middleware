@@ -3,19 +3,18 @@ module.exports = wallaby => {
     testFramework: 'jest',
     files: [
       'package.json',
-      'index.js',
-      'mock-handler.js',
-      '!index.test.js'
+      'src/**/*.js',
+      '!src/**/*.test.js'
     ],
     tests: [
-      'index.test.js'
+      'src/**/*.test.js'
     ],
     env: {
       type: 'node',
       runner: 'node'
     },
     compilers: {
-      '*.js': wallaby.compilers.babel()
+      'src/**/*.js': wallaby.compilers.babel()
     },
     setup(wallaby) {
       wallaby.testFramework.configure(require('./package.json').jest);
