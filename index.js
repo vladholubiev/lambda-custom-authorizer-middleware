@@ -8,6 +8,10 @@ export function customLocalLambdaAuthorizer({localAuthorizer: {handlerPath, hand
   }
 
   return async function(req, res, next) {
+    if (!Boolean(process.env.IS_OFFLINE)) {
+      return next();
+    }
+
 
   };
 }
