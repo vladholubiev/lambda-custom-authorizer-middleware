@@ -1,0 +1,30 @@
+{
+  "name": "lambda-custom-authorizer-middleware",
+  "version": "0.1.0",
+  "description": "Adds support of custom lambda authorizers for local offline usage, e.g. with serverless-offlin",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladgolubev/lambda-custom-authorizer-middleware.git"
+  },
+  "keywords": [
+    "lambda",
+    "serverless",
+    "custom",
+    "authorizer",
+    "local",
+    "offline",
+    "api",
+    "gateway",
+    "aws"
+  ],
+  "author": "Vlad Holubiev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vladgolubev/lambda-custom-authorizer-middleware/issues"
+  },
+  "homepage": "https://github.com/vladgolubev/lambda-custom-authorizer-middleware#readme"
+}
