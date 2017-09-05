@@ -1,4 +1,4 @@
-import {get, set, toLower} from 'lodash';
+import {camelCase, get, set} from 'lodash';
 import {getAuthFunction} from './auth-function';
 
 const debug = require('debug')('lambda-custom-authorizer-middleware');
@@ -24,13 +24,16 @@ export function customLocalLambdaAuthorizer({
     localAuthorizer = getAuthFunction(handlerPath, handlerName);
 
     try {
-      const identitySourceValue = get(req, `headers[${identitySourceHeader}]`, '');
+      const identitySourceValue = get(req, `headers[${camelCase(identitySourceHeader)}]`, '');
 
       if (!identitySourceValue) {
         debug('[warn][empty-header-value]');
       }
 
-      const {context} = await localAuthorizer(toLower(identitySourceValue));
+      const {context} = await localAuthorizer({
+        authorizationToken: identitySourceValue,
+        methodArn: 'lambda-custom-authorizer-middleware'
+      });
       debug(`[success] %o`, context);
 
       set(req, 'apiGateway.event.requestContext.authorizer', context);

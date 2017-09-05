@@ -42,19 +42,25 @@ it('should call next if IS_OFFLINE is not defined', async() => {
 it('should call mock handler w/ token from default header', async() => {
   await customLocalLambdaAuthorizer(config)({headers: {authorization: 'my-token'}}, {}, jest.fn());
 
-  expect(mockHandler).toBeCalledWith('my-token', {}, expect.any(Function));
+  expect(mockHandler).toBeCalledWith({
+    authorizationToken: 'my-token',
+    methodArn: 'lambda-custom-authorizer-middleware'
+  }, {}, expect.any(Function));
 });
 
 it('should call mock handler w/ token from non-standard header', async() => {
   await customLocalLambdaAuthorizer({
     identitySourceHeader: 'customHeader',
     localAuthorizer: {
-      handlerPath: './mock-handler',
+      handlerPath: './auth-handler.mock',
       handlerName: 'handler'
     }
   })({headers: {customHeader: 'my-custom-token'}}, {}, jest.fn());
 
-  expect(mockHandler).toBeCalledWith('my-custom-token', {}, expect.any(Function));
+  expect(mockHandler).toBeCalledWith({
+    authorizationToken: 'my-custom-token',
+    methodArn: 'lambda-custom-authorizer-middleware'
+  }, {}, expect.any(Function));
 });
 
 it('should call next if all is ok', async() => {
@@ -65,9 +71,7 @@ it('should call next if all is ok', async() => {
 });
 
 it('should response w/ status code 401 in case thrown from authorizer', async() => {
-  const respMock = {
-    status: jest.fn(() => ({json: jest.fn()}))
-  };
+  const respMock = {status: jest.fn(() => ({json: jest.fn()}))};
   const error = new Error('something happened');
   mockHandler.mockImplementationOnce((_, __, cb) => cb(error));
 
@@ -77,9 +81,7 @@ it('should response w/ status code 401 in case thrown from authorizer', async() 
 
 it('should response w/ error in case thrown from authorizer', async() => {
   const jsonMock = jest.fn();
-  const respMock = {
-    status: () => ({json: jsonMock})
-  };
+  const respMock = {status: () => ({json: jsonMock})};
   const error = new Error('something happened');
   mockHandler.mockImplementationOnce((_, __, cb) => cb(error));
 
