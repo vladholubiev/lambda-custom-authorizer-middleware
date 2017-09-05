@@ -8,6 +8,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib/ && babel src --out-dir lib --ignore test.js",
+    "coverage": "jest --coverage",
     "docs": "documentation readme src/index.js --section API --shallow --github",
     "lint": "eslint . --fix --format=./node_modules/eslint-formatter-pretty",
     "prepublishOnly": "npm run build && npm run docs",

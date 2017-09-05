@@ -109,3 +109,15 @@ $ yarn build
 ```sh
 $ yarn docs
 ```
+
+### Tests
+
+```sh
+$ yarn test
+```
+
+### Coverage
+
+```sh
+$ yarn coverage
+```
