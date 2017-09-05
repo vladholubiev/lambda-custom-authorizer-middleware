@@ -1,6 +1,6 @@
 {
   "name": "lambda-custom-authorizer-middleware",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Adds support of custom lambda authorizers for local offline usage, e.g. with serverless-offlin",
   "files": [
     "lib"
