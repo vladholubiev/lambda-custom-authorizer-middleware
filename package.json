@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf lib/ && babel src --out-dir lib --ignore test.js",
+    "docs": "documentation readme src/index.js --section API --shallow --github",
     "lint": "eslint . --fix --format=./node_modules/eslint-formatter-pretty",
     "prepublishOnly": "npm run build",
     "test": "jest"
@@ -18,6 +19,7 @@
     "babel-jest": "^21.0.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",
+    "documentation": "^5.3.0",
     "eslint": "^4.6.1",
     "eslint-config-google": "0.6.0",
     "eslint-formatter-pretty": "^1.3.0",

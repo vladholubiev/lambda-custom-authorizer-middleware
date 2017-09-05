@@ -8,9 +8,11 @@ let localAuthorizer;
  * Express middleware function constructor to execute local lambda function
  * as a custom authorizer and attach request context to `req` object
  * as `req.apiGateway.event.requestContext.authorizer` (as for usage with `aws-serverless-exporess` npm package)
- * @param {String} [identitySourceHeader=authorization] Name of HTTP header where auth token is located
- * @param {String} handlerPath Path on local file system to the function
- * @param {String} handlerName Name of the exported function in provided path
+ * @param {Object} options Configuration object
+ * @param {String} [options.identitySourceHeader=authorization] Name of HTTP header where auth token is located
+ * @param {Object} [options.localAuthorizer={}] Local authorizer function configuration object
+ * @param {String} options.localAuthorizer.handlerPath Path on local file system to the function
+ * @param {String} options.localAuthorizer.handlerName Name of the exported function in provided path
  * @return {Function} Express middleware function. Works only when IS_OFFLINE env var is set.
  * @throws {Error} Throws when config is not provided
  */
