@@ -34,12 +34,18 @@ And here it comes. With this package you can provide path on local file system t
 
 ## Install
 
+Note, it's installed not in dev deps.
+
 ```sh
 $ yarn add lambda-custom-authorizer-middleware
 ```
 
+## Usage
+
 Due to the fact this package is meant to be used with [serverless-offline](https://github.com/dherault/serverless-offline)
 it relies on its environment variable `IS_OFFLINE` to switch on using local Lambda function.
+
+And as for now, it's limited to 1 kind of authorizer function per project.
 
 ## API
 
@@ -93,7 +99,7 @@ This package uses [debug](https://github.com/visionmedia/debug) library,
 so set environment variable like that to see the logs.
 
 ```sh
-DEBUG=lambda-custom-authorizer-middleware:*
+DEBUG=lambda-custom-authorizer-middleware sls offline start
 ```
 
 ### Lint

@@ -26,7 +26,7 @@ let localAuthorizer;
  * app.use(awsSlsExpressMiddleware.eventContext());
  * app.use(customLocalLambdaAuthorizer({ // Make sure to add after 'awsSlsExpressMiddleware'
  *  localAuthorizer: {
- *    handlerPath: '../other-project/lambda/auth',
+ *    handlerPath: '../../../../other-project/lambda/auth', // NOTE: path is relative to the package inside node_modules/
  *    handlerName: 'handler'
  *  }
  * }));
