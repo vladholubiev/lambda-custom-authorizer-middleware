@@ -41,7 +41,7 @@ $ yarn add lambda-custom-authorizer-middleware
 
 ### customLocalLambdaAuthorizer
 
-[src/index.js:36-78](https://github.com/vladgolubev/lambda-custom-authorizer-middleware/blob/43d24628190a72925595e9d76b2c7daccc03033a/src/index.js#L36-L78 "Source code on GitHub")
+[src/index.js:36-78](https://github.com/vladgolubev/lambda-custom-authorizer-middleware/blob/a53b31eba50e2721d173dec77f593122f0bdf72f/src/index.js#L36-L78 "Source code on GitHub")
 
 Express middleware function constructor to execute local lambda function
 as a custom authorizer and attach request context to `req` object

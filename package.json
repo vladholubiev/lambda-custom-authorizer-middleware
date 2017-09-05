@@ -41,9 +41,10 @@
     "authorizer",
     "local",
     "offline",
-    "api",
-    "gateway",
-    "aws"
+    "aws",
+    "api gateway",
+    "aws-serverless-express",
+    "serverless-offline"
   ],
   "author": "Vlad Holubiev",
   "license": "MIT",
