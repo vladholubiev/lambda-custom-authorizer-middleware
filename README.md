@@ -54,8 +54,8 @@ as `req.apiGateway.event.requestContext.authorizer` (as for usage with `aws-serv
     -   `options.localAuthorizer` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Local authorizer function configuration object (optional, default `{}`)
         -   `options.localAuthorizer.handlerPath` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Path on local file system to the function
         -   `options.localAuthorizer.handlerName` **[String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Name of the exported function in provided path
-        -   `options.handlerPath`  
-        -   `options.handlerName`  
+        -   `options.handlerPath`
+        -   `options.handlerName`
 
 **Examples**
 
@@ -82,6 +82,15 @@ app.get('/', (req, res) => res.json(req.apiGateway.event.requestContext.authoriz
 Returns **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Express middleware function. Works only when IS_OFFLINE env var is set.
 
 ## Development
+
+### Debug
+
+This package uses [debug](https://github.com/visionmedia/debug) library,
+so set environment variable like that to see the logs.
+
+```sh
+DEBUG=lambda-custom-authorizer-middleware:*
+```
 
 ### Lint
 
