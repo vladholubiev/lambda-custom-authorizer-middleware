@@ -2,6 +2,9 @@
 
 > Lambda Custom Authorizer Middleware for using with AWS Serverless Express and Serverless Offline plugins
 
+[![npm](https://img.shields.io/npm/v/lambda-custom-authorizer-middleware.svg?maxAge=2592000)](https://www.npmjs.com/package/lambda-custom-authorizer-middleware)
+[![npm](https://img.shields.io/npm/dm/lambda-custom-authorizer-middleware.svg?maxAge=2592000)](https://github.com/vladgolubev/lambda-custom-authorizer-middleware)
+
 ## Purpose
 
 Let's say you are using [aws-serverless-express](https://github.com/awslabs/aws-serverless-express).
