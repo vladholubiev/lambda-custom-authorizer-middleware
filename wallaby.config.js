@@ -4,6 +4,7 @@ module.exports = wallaby => {
     files: [
       'package.json',
       'index.js',
+      'mock-handler.js',
       '!index.test.js'
     ],
     tests: [
