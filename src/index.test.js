@@ -1,9 +1,9 @@
 import {customLocalLambdaAuthorizer} from '.';
-import {handler as mockHandler} from './mock-handler';
+import {handler as mockHandler} from './auth-handler.mock';
 
 const config = {
   localAuthorizer: {
-    handlerPath: './mock-handler',
+    handlerPath: './auth-handler.mock',
     handlerName: 'handler'
   }
 };
@@ -42,7 +42,7 @@ it('should call next if IS_OFFLINE is not defined', async() => {
 it('should call mock handler w/ token from default header', async() => {
   await customLocalLambdaAuthorizer(config)({headers: {authorization: 'my-token'}}, {}, jest.fn());
 
-  expect(mockHandler).toBeCalledWith('my-token');
+  expect(mockHandler).toBeCalledWith('my-token', {}, expect.any(Function));
 });
 
 it('should call mock handler w/ token from non-standard header', async() => {
@@ -54,7 +54,7 @@ it('should call mock handler w/ token from non-standard header', async() => {
     }
   })({headers: {customHeader: 'my-custom-token'}}, {}, jest.fn());
 
-  expect(mockHandler).toBeCalledWith('my-custom-token');
+  expect(mockHandler).toBeCalledWith('my-custom-token', {}, expect.any(Function));
 });
 
 it('should call next if all is ok', async() => {
@@ -69,7 +69,7 @@ it('should response w/ status code 401 in case thrown from authorizer', async() 
     status: jest.fn(() => ({json: jest.fn()}))
   };
   const error = new Error('something happened');
-  mockHandler.mockImplementationOnce(() => Promise.reject(error));
+  mockHandler.mockImplementationOnce((_, __, cb) => cb(error));
 
   await customLocalLambdaAuthorizer(config)({}, respMock, jest.fn());
   expect(respMock.status).toBeCalledWith(401);
@@ -81,7 +81,7 @@ it('should response w/ error in case thrown from authorizer', async() => {
     status: () => ({json: jsonMock})
   };
   const error = new Error('something happened');
-  mockHandler.mockImplementationOnce(() => Promise.reject(error));
+  mockHandler.mockImplementationOnce((_, __, cb) => cb(error));
 
   await customLocalLambdaAuthorizer(config)({}, respMock, jest.fn());
   expect(jsonMock).toBeCalledWith({error});

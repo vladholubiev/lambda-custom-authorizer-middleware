@@ -1,4 +1,5 @@
 import {get, set, toLower} from 'lodash';
+import {getAuthFunction} from './auth-function';
 
 const debug = require('debug')('lambda-custom-authorizer-middleware');
 let localAuthorizer;
@@ -20,13 +21,7 @@ export function customLocalLambdaAuthorizer({
       return next();
     }
 
-    if (localAuthorizer) {
-      debug(`[handler-loaded]`);
-    } else {
-      debug(`[handler-loading][path:${handlerPath}][name:${handlerName}]`);
-      localAuthorizer = require(handlerPath)[handlerName];
-      debug(`[handler-loaded]`);
-    }
+    localAuthorizer = getAuthFunction(handlerPath, handlerName);
 
     try {
       const identitySourceValue = get(req, `headers[${identitySourceHeader}]`, '');

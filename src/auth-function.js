@@ -11,7 +11,7 @@ export function getAuthFunction(handlerPath, handlerName) {
   debug(`[handler-loading][path:${handlerPath}][name:${handlerName}]`);
   const cbFunction = require(handlerPath)[handlerName];
 
-  promisedFunction = (event) => new Promise((resolve, reject) => {
+  promisedFunction = event => new Promise((resolve, reject) => {
     cbFunction(event, {}, (error, response) => {
       if (error) {
         return reject(error);
