@@ -1,8 +1,10 @@
 {
   "name": "lambda-custom-authorizer-middleware",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Adds support of custom lambda authorizers for local offline usage, e.g. with serverless-offlin",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib/ && babel src --out-dir lib --ignore test.js",
