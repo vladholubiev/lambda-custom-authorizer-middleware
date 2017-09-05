@@ -1,4 +1,6 @@
-# Lambda Custom Authorizer Midleware for AWS Serverless Express and Serverless Offline
+# AWS Lambda Local Middleware
+
+> Lambda Custom Authorizer Middleware for using with AWS Serverless Express and Serverless Offline plugins
 
 ## API
 
@@ -20,6 +22,25 @@ as `req.apiGateway.event.requestContext.authorizer` (as for usage with `aws-serv
         -   `options.handlerPath`  
         -   `options.handlerName`  
 
+**Examples**
+
+```javascript
+import express from 'express';
+import awsSlsExpressMiddleware from 'aws-serverless-express/middleware';
+import {customLocalLambdaAuthorizer} from 'lambda-custom-authorizer-middleware';
+
+const app = express();
+
+app.use(awsSlsExpressMiddleware.eventContext());
+app.use(customLocalLambdaAuthorizer({ // Make sure to add after 'awsSlsExpressMiddleware'
+ localAuthorizer: {
+   handlerPath: '../other-project/lambda/auth',
+   handlerName: 'handler'
+ }
+}));
+
+app.get('/', (req, res) => res.json(req.apiGateway.event.requestContext.authorizer));
+```
 
 -   Throws **[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** Throws when config is not provided
 

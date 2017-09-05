@@ -7,7 +7,7 @@
     "build": "rm -rf lib/ && babel src --out-dir lib --ignore test.js",
     "docs": "documentation readme src/index.js --section API --shallow --github",
     "lint": "eslint . --fix --format=./node_modules/eslint-formatter-pretty",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run build && npm run docs",
     "test": "jest"
   },
   "dependencies": {

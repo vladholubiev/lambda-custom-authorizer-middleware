@@ -15,6 +15,23 @@ let localAuthorizer;
  * @param {String} options.localAuthorizer.handlerName Name of the exported function in provided path
  * @return {Function} Express middleware function. Works only when IS_OFFLINE env var is set.
  * @throws {Error} Throws when config is not provided
+ * @example
+ *
+ * import express from 'express';
+ * import awsSlsExpressMiddleware from 'aws-serverless-express/middleware';
+ * import {customLocalLambdaAuthorizer} from 'lambda-custom-authorizer-middleware';
+ *
+ * const app = express();
+ *
+ * app.use(awsSlsExpressMiddleware.eventContext());
+ * app.use(customLocalLambdaAuthorizer({ // Make sure to add after 'awsSlsExpressMiddleware'
+ *  localAuthorizer: {
+ *    handlerPath: '../other-project/lambda/auth',
+ *    handlerName: 'handler'
+ *  }
+ * }));
+ *
+ * app.get('/', (req, res) => res.json(req.apiGateway.event.requestContext.authorizer));
  */
 export function customLocalLambdaAuthorizer({
   identitySourceHeader = 'authorization',
