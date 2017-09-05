@@ -2,6 +2,12 @@ let promisedFunction;
 
 const debug = require('debug')('lambda-custom-authorizer-middleware');
 
+/**
+ * Get promisified lambda function by path and exported handler name
+ * @param {String} handlerPath Path on local file system to the function
+ * @param {String} handlerName Name of the exported function in provided path
+ * @returns {(function(*=): Promise)|*} Promisified function
+ */
 export function getAuthFunction(handlerPath, handlerName) {
   if (promisedFunction) {
     debug(`[handler-loaded]`);
